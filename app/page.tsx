@@ -280,7 +280,7 @@ export default function Home() {
     if (error) setNotice('บันทึก Machine Master ไม่สำเร็จ: ' + error.message);
     else {
       setMachines(prev => machineForm.mode === 'new'
-        ? [...prev, { id: code, name, location, status: 'Stopped', temperature, vibration, runtime }].sort((a,b) => a.id.localeCompare(b.id))
+        ? [...prev, { id: code, name, location, status: 'Stopped' as const, temperature, vibration, runtime }].sort((a,b) => a.id.localeCompare(b.id))
         : prev.map(m => m.id === machineForm.original ? { ...m, name, location, temperature, vibration, runtime } : m));
       setMachineForm(null);
       setNotice('บันทึก Machine Master ลง Supabase แล้ว');
